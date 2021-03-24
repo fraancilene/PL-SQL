@@ -1,0 +1,17 @@
+-- DECLARANDO CONSTANTES
+
+-- tipo NUMBER
+DECLARE 
+	v_pi CONSTANT number(38,15):= 3.14159265358979;
+BEGIN
+	dbms_output.put_line('Pi = ' || v_pi);
+END;
+
+--tipo char
+DECLARE
+	v_caracterTamFixo CONSTANT char(2) := 'RS';
+	v_caracterTamVariavel CONSTANT varchar2(100) := 'Porto Alegre, RS';
+BEGIN
+	dbms_output.put_line('String caracteres Tamanho fixo = ' || v_caracterTamFixo);
+	dbms_output.put_line('string Carateres tamanho variável = ' || v_caracterTamVariavel);
+END;

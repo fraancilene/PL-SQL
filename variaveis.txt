@@ -1,0 +1,102 @@
+/** UTILIZAÇÃO DE VARIÁVEIS
+ * armazenamento temporário de dados
+ * manipulação dos valores armazenados
+ * reutilização
+ * facilidade de manutenção
+ * 
+ * IDENTIFICADORES
+ * são utilizados para nomear unidades de programas pl/sql
+ * (constantes, variaveis, exceções, procedures, cursores, funções e packages)
+ * conter até 30 caracteres, iniciar com letra, não utilizar palavras reservadas
+ * a não ser que sejam colocadas entre aspas duplas.
+ *
+ *  Quoted Identifiers - são os identificadores que ficam entre aspas duplas
+ * podem incluir quaisquer caracteres imprimíveis, incluindo esçoas.
+ * */
+
+-- exemplo de Quoted Identifiers
+"v_numero" NUMBER := 1;
+
+/** variáveis definidas pelo usuário
+ * você pode criar identificadores quando você define um componente de programa.
+ * possuir menos que 30 caracteres, podem incluir $, # ou _
+ */
+
+/** STRINGS LITERAIS
+ * um literal é um valor explicito definido por string, numero ou booleano
+ * também pode representar um literal de data
+ * geralmente utilizamos VARCHAR2 para um conjunto de caracteres entre aspas simples
+ * são case sensitivos.
+ * */
+exemplo:
+BEGIN
+	v_texto := 'String de caractecres';
+	v_data1 := '28/01/20';
+	v_data2 := '28/01/2020';
+END
+
+-- LITERAL NUMÉRICO
+BEGIN 
+v_valor := 5000;
+v_valor2 := 2638E8; -- notação científica
+v_double := 2.0d; --d indica que é do tipo double
+v_float := 2.0f; --f indica que é tipo float
+
+-- LITERAL BOOLEANO
+BEGIN
+	v_booleano1 := TRUE;
+	v_booleano2 := FALSE;
+	v_booleano3 := NULL;
+end
+
+--DECLARANDO VARIÁVEIS
+/* #Declare e inicialize variáveis dentro da seção DECLARE
+ * #Declarações de variáveis ou constantesalocam espaço de 
+ * armazenamento para um valor, especificam seu tipo de dado e nome
+ * de forma que você possa referenciá-la.
+ * #Declarações também podem atribuir um valor inicial e impor a constraint NOT NULL*/
+
+-- UTILIZANDO VARIÁVEIS - ATRIBUINDO NOVOS VALORES
+/* # Atribua novos valores dentro da seção "BEGIN*
+ * # O valor existente da variável é sustituído pelo novo
+ * # você deve declarar uma variável antes de referencá-la em outros comandos 
+ * # pode iniciá-la ou não*/
+
+-- SINTAXE
+DECLARE
+	nomeIdentificador[CONSTANT] tipo_de_dado [NOT NULL] := |DEFAULT expressão;
+	
+	v_nome varchar2(15) NOT NULL := 'Francilene';
+
+
+-- Exemplo1 - variaveis do tipo char e varchar2
+SET serveroutput ON;
+DECLARE
+	v_caracterTamFixo char(2) := 'RS';
+	v_caracterTamVariavel varchar2(100) := 'Porto Alegre, RS';
+BEGIN
+	dbms_output.put_line('String caracteres Tamanho fixo = ' || v_caracterTamFixo);
+	dbms_output.put_line('string Carateres tamanho variável = ' || v_caracterTamVariavel);
+END;
+
+-- Exemplo2 - variavel do tipo number
+SET serveroutput ON;
+DECLARE
+	v_number  number(11,2) := 1200.50
+	
+BEGIN
+	dbms_output.put_line('Número = ' || v_caracterTamFixo);
+
+END;
+
+-- Exemplo3 - variavel do tipo date
+SET serveroutput ON;
+DECLARE
+	v_data1 DATE := to_date('29/04/20', 'DD/MM/YY');
+	v_data2 DATE := to_date('29/04/2020', 'DD/MM/YYYY');
+	
+BEGIN
+	dbms_output.put_line('Data 1 = ' || v_data1);
+	dbms_output.put_line('Data 2 = ' || v_data2);
+END;
+
