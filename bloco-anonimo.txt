@@ -1,0 +1,63 @@
+-- estrutura do bloco anônimo
+DECLARE -- opcional
+	-- declaração de variáveis, constantes,
+	-- declaração de cursores, exceções definidas pelo usuário
+
+BEGIN -- obrigatória
+	-- comandos SQL
+ 	-- comandos PL/SQL
+
+EXCEPTION -- opcional
+ 	-- ações a serem executadas para tratamento de exceções
+ 	-- que forem disparadas pelos comandos na seção BEGIN
+ END;
+
+
+-- BLOCO ANÔNIMO - exemplo1
+SET SERVEROUTPUT ON;
+DECLARE 
+	v_texto varchar2 (100):= 'Seja Bem Vindo ao PL/SQL';
+	-- uma variável não é iniciaizada ela fica com valor null
+BEGIN 
+	dbms_output.put_line(v_texto);
+EXCEPTION
+	WHEN OTHERS 
+	THEN 
+	dbms_output.put_line("Erro Oracle: " || SQLCODE || SQLERRM);
+	
+END;
+
+/** DBMS_OUTPUT 
+ * os procedimentos desta package se destinam a mostar texto na tela.
+ * Distribua comandos dessa package no código do programa que desejar 
+ * depurar para mostrar mensagens de aviso e conteúdos de variáveis.
+ * 
+ * para habilitar o Buffer de saída da package dê o comando
+ * SET SERVEROUTPUT ON
+ * antes de executar o bloco de código.
+ * 
+ * SET é um comando do SQL*PLUS e deve ser executado  fora do bloco.
+ * 
+ * como usar: DBMS_OUTPUT.PUT_LINE('Texto')
+ */
+ 
+-- Exemplo 02
+ SET serveroutput ON 
+
+DECLARE 
+	v_numero1 number(11,2):=500;
+	v_numero2 number(11,2):=400;
+	v_media number(11,2);
+BEGIN 
+	v_media := v_numero1 + v_numero2 / 2;
+	dbms_output.put_line('Media = ' || v_media);	
+END;
+ 
+
+
+
+
+
+
+
+
